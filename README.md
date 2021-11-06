@@ -40,7 +40,7 @@ pip3 install -r requirements.txt
 python3.6 app.py
 ```
 
-#### Testing (not implemented yet)
+#### Testing
 
 ```python3
 python3.6 -m unittest discover test
