@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kanban | Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='addtodo.css')}}" />
+</head>
+
+<body>
+  <div class="navbar">
+		<div class="container flex">
+			<h1 class='logo'>Kanban</h1>
+			<nav>
+				<ul>
+					<li><a href='/dashboard'>Home</a></li>
+					<li><a href='/addtodo'>Add Todo</a></li>
+					<li><a href='/logout'>Logout</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+ 
+  <div class="todos">
+    <div class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %}
+        <ul class="flashes">
+          {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}<br />
+      <h2>Welcome {{username}} !</h2>
+      <a href='/addtodo'><input type='submit' value='Add Todo' class='btn btn-primary'></a>
+      <br />
+      <br />
+      <div>
+        <h2>Todo</h2>
+        <hr />
+        <div class="all-todos">
+          {% for todo in todo %}
+          <div class="todo card">
+            <div class="todo-info">
+              <p>{{todo.title}}</p>
+            </div>
+            <div>
+              <a href="{{ url_for('doing', todoid=todo.todoid)}}"><u>Doing</u></a>
+              <a href="{{ url_for('done', todoid=todo.todoid)}}"><u>Done</u></a>
+              <a href="{{ url_for('delete', todoid=todo.todoid)}}"><u>Delete</u></a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div>
+        <h2>Doing</h2>
+        <hr />
+        <div class="all-todos">
+          {% for todo in doing %}
+          <div class="todo card">
+            <div class="todo-info">
+              <p>{{todo.title}}</p>
+            </div>
+            <div>
+              <a href="{{ url_for('done', todoid=todo.todoid)}}"><u>Done</u></a>
+              <a href="{{ url_for('delete', todoid=todo.todoid)}}"><u>Delete</u></a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div>
+        <h2>Done</h2>
+        <hr />
+        <div class="all-todos">
+          {% for todo in done %}
+          <div class="todo card">
+            <div class="todo-info">
+              <p>{{todo.title}}</p>
+            </div>
+            <div>
+              <a href="{{ url_for('delete', todoid=todo.todoid)}}"><u>Delete</u></a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

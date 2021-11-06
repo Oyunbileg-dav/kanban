@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Kanban | Login</title>
+	<link rel='stylesheet' href="{{ url_for('static', filename='login.css')}}">
+</head>
+
+<body>
+	<div class='navbar'>
+		<div class="container flex">
+			<h1 class='logo'>Kanban</h1>
+			<nav>
+				<ul>
+					<li><a href='/'>Home</a></li>
+					<li><a href='/signup'>Sign Up</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+	<section class='showcase'>
+		<div class='container grid'>
+			<div class="showcase-text">
+				<h1>Let's get it!</h1>
+				<p>Welcome back!</p>
+			</div>
+			<div class='login-form card'>
+				<h2>Login</h2>
+				{% with messages = get_flashed_messages(with_categories=true) %}
+				{% if messages %}
+				<ul class=flashes>
+					{% for category, message in messages %}
+					<li class="{{ category }}">{{ message }}</li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+				{% endwith %}
+				<form method='POST' action=''>
+					{{form.hidden_tag()}}
+					<div class='form-control'>
+						{{form.username}}
+					</div>
+					<div class='form-control'>
+						{{form.password}}
+					</div>
+					<div class='form-control'>
+						<input type='submit' value='Log in' class='btn btn-primary'>
+					</div>
+					<div class='form-control sign-up'>
+						<a href='/signup'>Don't have an account? Sign Up.</a>
+					</div>
+				</form>
+			</div>
+	</section>
+</body>
+</html>

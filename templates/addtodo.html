@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Kanban | Create</title>
+	<link rel='stylesheet' href="{{ url_for('static', filename='addtodo.css')}}">
+</head>
+
+<body>
+	<div class='navbar'>
+		<div class="container flex">
+			<h1 class='logo'>Kanban</h1>
+			<nav>
+				<ul>
+					<li><a href='/dashboard'>Home</a></li>
+					<li><a href='/addtodo'>Add Todo</a></li>
+					<li><a href='/logout'>Logout</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+	<div class='todos'>
+		<div class='container'>
+			<h1>Create Todo</h1>
+			<hr>
+			<div class='add-todo card'>
+				<form method='POST' action=''>
+					{{form.hidden_tag()}}
+					<div class='form-control'>
+						{{form.title}}
+						{{form.status}}
+					</div>
+					<div class='form-control'>
+						<input type='submit' value='Create' class='btn btn-primary'>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+</html>
